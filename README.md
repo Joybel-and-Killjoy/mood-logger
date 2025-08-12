@@ -21,5 +21,9 @@ Full year view
 Different views (week, month, year)
 Ability to log past days
 
+Live demo!:
+https://joybel-and-killjoy.github.io/mood-logger/
+
 Made with sweat+tears+love,
+
 Joybel, a.k.a. Sophie! (❁´◡`❁)
