@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+NSW:wght@100..400&display=swap" rel="stylesheet">
+        <title>JS Practice</title>
+        <style>
+            
+            body {
+                display: flex;
+                background-color: lavenderblush;
+                margin: 0;
+                flex-direction: column;
+                align-items: center;
+                font-family: "Playwrite AU NSW";
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 3px;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .day {
+                background-color: rgb(252, 222, 227);
+                border-radius: 5px;
+                text-align: center;
+                width: 66.5px;
+                height: 30px;
+                box-shadow: 0px 0px 10px rgb(253, 168, 168);
+            }
+
+            button {
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: rgb(70, 111, 99);
+                transform: scale(1.03);
+                box-shadow: 0px 0px 10px rgb(179, 34, 58);
+            }
+
+            .hpy-btn {
+                color: pink;
+                background-color: rgb(157, 88, 100);
+                height: 50px;
+                width: 200px;
+                border: none;
+                border-radius: 5px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            .neu-btn {
+                color: rgb(97, 45, 19);
+                background-color: rgb(213, 169, 145);
+                height: 50px;
+                width: 200px;
+                border: none;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .sad-btn {
+                color: rgb(167, 167, 255);
+                background-color: rgb(56, 56, 124);
+                width: 200px;
+                height: 50px;
+                border: none;
+                border-radius: 5px;
+            }
+
+            .cal-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                margin: 8px;
+                gap: 3px;
+            }
+
+            .num-date {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                width: 66.5px;
+                background-color: rgb(252, 234, 237);
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px rgb(252, 187, 211);
+            }
+
+            .happy {
+                background-color: rgb(255, 149, 166);
+                color: white;
+            }
+
+            .sad {
+                background-color: rgb(172, 194, 252);
+                color: white;
+            }
+
+            .neutral {
+                background-color: rgb(212, 176, 161);
+                color: white;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h2>Mood tracker</h2>
+        <div class="mood-label" id="mood-label">Today is: (today's date)</div>
+
+        <button class="hpy-btn" id="log-happy">Log Happy Mood! (❁´◡`❁)</button>
+        <button class="neu-btn" id="log-neu">Log Neutral Mood. (✿◡ -- ◡)</button>
+        <button class="sad-btn" id="log-sad">Log Sad Mood... (。﹏。*)</button>
+        
+        <h4 class="cur-mnth" id="cur-mnth">Current Month</h4>
+
+        <div class="grid" id="mood-grid">
+            <div class="day">Sun</div>
+            <div class="day">Mon</div>
+            <div class="day">Tue</div>
+            <div class="day">Wed</div>
+            <div class="day">Thu</div>
+            <div class="day">Fri</div>
+            <div class="day">Sat</div>
+        </div>
+
+        <div class="cal-grid" id="cal-grid">
+            <div class="num-date" data-numdate="1">1</div>
+            <div class="num-date" data-numdate="2">2</div>
+            <div class="num-date" data-numdate="3">3</div>
+            <div class="num-date" data-numdate="4">4</div>
+            <div class="num-date" data-numdate="5">5</div>
+            <div class="num-date" data-numdate="6">6</div>
+            <div class="num-date" data-numdate="7">7</div>
+            <div class="num-date" data-numdate="8">8</div>
+            <div class="num-date" data-numdate="9">9</div>
+            <div class="num-date" data-numdate="10">10</div>
+            <div class="num-date" data-numdate="11">11</div>
+            <div class="num-date" data-numdate="12">12</div>
+            <div class="num-date" data-numdate="13">13</div>
+            <div class="num-date" data-numdate="14">14</div>
+            <div class="num-date" data-numdate="15">15</div>
+            <div class="num-date" data-numdate="16">16</div>
+            <div class="num-date" data-numdate="17">17</div>
+            <div class="num-date" data-numdate="18">18</div>
+            <div class="num-date" data-numdate="19">19</div>
+            <div class="num-date" data-numdate="20">20</div>
+            <div class="num-date" data-numdate="21">21</div>
+            <div class="num-date" data-numdate="22">22</div>
+            <div class="num-date" data-numdate="23">23</div>
+            <div class="num-date" data-numdate="24">24</div>
+            <div class="num-date" data-numdate="25">25</div>
+            <div class="num-date" data-numdate="26">26</div>
+            <div class="num-date" data-numdate="27">27</div>
+            <div class="num-date" data-numdate="28">28</div>
+            <div class="num-date" data-numdate="29">29</div>
+            <div class="num-date" data-numdate="30">30</div>
+            <div class="num-date" data-numdate="31">31</div>
+        </div>
+
+        <script>
+            const label = document.getElementById('mood-label');
+            const monthLabel = document.getElementById('cur-mnth');
+            const hapBtn = document.getElementById('log-happy');
+            const neuBtn = document.getElementById('log-neu');
+            const sadBtn = document.getElementById('log-sad');
+            const mnthdays = document.querySelectorAll('.num-date');
+
+            function getTodaysDate() {
+                const today = new Date();
+                return today.getDate();
+            }
+
+            function updateLabel() {
+                const today = new Date();
+                //toDateString returns an actual string of dates rather than just a number.
+                //Example: 0 - Sun 1 - Mon 2 - Tue and so forth.
+                //The return value replaces the ENTIRE id="mood-label" div.
+                label.textContent = `${today.toDateString()}`;
+            }
+
+            updateLabel();
+
+            const now = new Date();
+            const monthyearName = now.toLocaleString('default', { month: 'long', year: 'numeric' });
+            monthLabel.textContent = `${monthyearName}`;
+
+            //Do something when this button (id=log-happy) is clicked.
+            hapBtn.addEventListener('click', function() {
+                const todaysDay = getTodaysDate();
+                //Go through the dataset "mnthdays" (scroll up to find dataset) and look at each day.
+                mnthdays.forEach(day => {
+                    //Set a variable (index) so that we can make sure the date is in a number format (parseInt).
+                    const index = parseInt(day.dataset.numdate); //theday is from "data-numdate"
+                    //IF the index variable equals todaysDay...
+                    if (index == todaysDay) {
+                        //...then change the color to happy (in css, pink).
+                        day.classList.add('happy');                       
+                        day.classList.remove('sad');
+                        day.classList.remove('neutral');
+                    }
+                });
+            });
+
+            sadBtn.addEventListener('click', function() {
+                const todaysDay = getTodaysDate();
+                mnthdays.forEach(day => {
+                    const index = parseInt(day.dataset.numdate);
+                    if (index == todaysDay) {
+                        day.classList.add('sad');
+                        day.classList.remove('happy');
+                        day.classList.remove('neutral');
+                    }
+                });
+            });
+
+            neuBtn.addEventListener('click', function() {
+                const todaysDay = getTodaysDate();
+                mnthdays.forEach(day => {
+                    const index = parseInt(day.dataset.numdate);
+                    if (index == todaysDay) {
+                        day.classList.add('neutral');
+                        day.classList.remove('sad');
+                        day.classList.remove('happy');
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
